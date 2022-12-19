@@ -14,6 +14,7 @@ function App() {
         <Route path='/' element={<MainPage />}>
           <Route path='/' element={<HomepageWrapper />}></Route>
           <Route path='/all_item' element={<AllItemsPage />}></Route>
+          <Route path='/cart' element={<Cart/>} />
         </Route>
       </Routes>
     </>
