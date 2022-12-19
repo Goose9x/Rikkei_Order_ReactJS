@@ -6,12 +6,12 @@ function FeaturedItems() {
   return (
     <>
       <div className='title_wrapper'>
-        <h2 class='title'>
+        <h2 className='title'>
           Chào mừng bạn
           <br />
           Đã đến với Rikkei Mart
         </h2>
-        <div class='description'>
+        <div className='description'>
           <p>
             Vô vàn đồ ăn ngon đang chờ đợi bạn !
             <br />
