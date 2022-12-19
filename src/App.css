@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.background {
+    background-image: url("./assets/background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .row {
     width: 80%;
     margin: auto;

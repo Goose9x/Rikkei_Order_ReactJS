@@ -5,7 +5,9 @@ function MainPage() {
   return (
     <>
       <NavBarTop />
-      <Outlet />
+      <div className='background'>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

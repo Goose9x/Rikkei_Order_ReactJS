@@ -5,7 +5,7 @@ function NavBarTop() {
   return (
     <>
       <div className='navbar-top'>
-        <div className='logo'>RIKKEI MART</div>
+        <div className='nav-logo'>RIKKEI MART</div>
         <div className='nav-menu'>
           <Link to='/'>Home</Link>
           <Link to='/all_item'>All items</Link>
