@@ -10,6 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path='/login' element={<LoginContainer />}></Route>
+        <Route path='/register' element={<RegisterContainer />} />
         <Route path='/' element={<MainPage />}>
           <Route path='/' element={<HomepageWrapper />}></Route>
           <Route path='/all_item' element={<AllItemsPage />}></Route>
