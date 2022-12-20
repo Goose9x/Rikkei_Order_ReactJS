@@ -15,7 +15,7 @@ function Category() {
             <p>Bim Bim</p>
           </div>
           <div className='category category2'>
-            <img src={image} alt='ha' />
+            <img src="https://firebasestorage.googleapis.com/v0/b/ra-order.appspot.com/o/images%2Fbo%20huc.png?alt=media&token=a570f7b4-08a9-45ad-977b-01e2372cbcc3" alt='ha' />
             <p>Nước uống</p>
           </div>
           <div className='category category3'>
