@@ -1,4 +1,4 @@
-import "./Category.css";
+
 import React from "react";
 import image from "../../assets/bimbim1.png";
 import { Link } from "react-router-dom";

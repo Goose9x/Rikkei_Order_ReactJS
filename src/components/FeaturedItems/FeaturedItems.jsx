@@ -2,10 +2,13 @@ import "./FeaturedItems.css";
 import featureBanner1 from "../../assets/food-banner-1.jpg";
 import featureBanner2 from "../../assets/food-banner-2.png";
 import { Link } from "react-router-dom";
+import Advertising from "../../components/Advertising/Advertising";
+
 function FeaturedItems() {
   return (
     <>
       <div className='title_wrapper'>
+   
         <h2 class='title'>
           Chào mừng bạn
           <br />

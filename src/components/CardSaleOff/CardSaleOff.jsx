@@ -1,10 +1,10 @@
 import image from "../../assets/bimbim1.png";
-import "./Card.css";
-function Card() {
+import "./CardSaleOff.css";
+function Item() {
   return (
     <>
-      <div className='col'>
-        <div className='food-card card'>
+      <div className='top-col'>
+        <div className='top-food-card card'>
           <div className='favourite'>
             <p className='quantity'>
               Stock: 10 <span className='status-on'></span>
@@ -37,4 +37,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default Item;
