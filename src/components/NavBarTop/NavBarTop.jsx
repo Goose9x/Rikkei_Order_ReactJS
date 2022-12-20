@@ -24,6 +24,7 @@ function NavBarTop() {
     removeCookie("avatar", { path: "/" });
     window.location.href = "http://localhost:8000/";
   };
+
   return (
     <>
       <div className='navbar-top'>
@@ -43,45 +44,43 @@ function NavBarTop() {
         </div>
         <div className='user'>
           <div className='user-profile'>
-            <Link>
-              {username ? (
-                <div className='user_display'>
-                  <div className='user_display-image'>
-                    <img
-                      src='https://i.vietgiaitri.com/2019/1/26/tuyen-tap-nhung-hinh-anh-gai-dep-nam-2019-gay-nhieu-chu-y-cua-co-111998.png'
-                      alt='.'
-                    />
-                  </div>
-                  {username}
-                  <ul className='dropdown-menu'>
-                    <li>
-                      <a className='dropdown-item' href='/'>
-                        Tài khoản
-                      </a>
-                    </li>
-                    <li>
-                      <a className='dropdown-item' href='/'>
-                        Giỏ hàng
-                      </a>
-                    </li>
-                    <li>
-                      <a className='dropdown-item' href='/'>
-                        Yêu thích
-                      </a>
-                    </li>
-                    <li>
-                      <button className='dropdown-item' onClick={logOut}>
-                        Đăng xuất
-                      </button>
-                    </li>
-                  </ul>
+            {username ? (
+              <div className='user_display'>
+                <div className='user_display-image'>
+                  <img
+                    src='https://i.vietgiaitri.com/2019/1/26/tuyen-tap-nhung-hinh-anh-gai-dep-nam-2019-gay-nhieu-chu-y-cua-co-111998.png'
+                    alt='.'
+                  />
                 </div>
-              ) : (
-                <div className='user-profile-login'>
-                  <Link to='/login'>Đăng nhập/Đăng kí</Link>
-                </div>
-              )}
-            </Link>
+                {username}
+                <ul className='dropdown-menu'>
+                  <li>
+                    <a className='dropdown-item' href='/'>
+                      Tài khoản
+                    </a>
+                  </li>
+                  <li>
+                    <a className='dropdown-item' href='/'>
+                      Giỏ hàng
+                    </a>
+                  </li>
+                  <li>
+                    <a className='dropdown-item' href='/'>
+                      Yêu thích
+                    </a>
+                  </li>
+                  <li>
+                    <button className='dropdown-item' onClick={logOut}>
+                      Đăng xuất
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className='user-profile-login'>
+                <Link to='/login'>Đăng nhập/Đăng kí</Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

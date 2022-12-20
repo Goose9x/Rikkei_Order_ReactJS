@@ -4,22 +4,29 @@ import React, { useState, useEffect } from "react";
 
 function AllItemsPage() {
   const [data, setData] = useState([]);
+  const [category, setCategoty] = useState([]);
+  const [cataTitle, setCataTitle] = useState("Tất cả sản phẩm");
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:3000/product");
+      const res = await fetch(
+        `http://127.0.0.1:3000/product?category=${category}`
+      );
       const data = await res.json();
       setData(data.data);
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [category]);
+  const handleChooseCatagory = (e) => {
+    setCategoty(e.target.id);
+  };
   if (data.length === 0) {
-    return <div>LOADING</div>;
+    return <div>...</div>;
   }
   return (
     <>
-      <Category />
+      <Category handleChooseCatagory={handleChooseCatagory} />
       <div className='category-name'>
-        <h1>Tất cả sản phẩm</h1>
+        <h1>{cataTitle}</h1>
       </div>
       <div className='row row-cols-1 row-cols-md-5 g-5'>
         {data.map((e, i) => (

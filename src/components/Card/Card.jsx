@@ -2,14 +2,16 @@ import image from "../../assets/bimbim1.png";
 import "./Card.css";
 function Card(props) {
   let cardData = props.cardData;
-  console.log(cardData);
   return (
     <>
       <div className='col'>
         <div className='food-card card'>
           <div className='favourite'>
             <p className='quantity'>
-              Stock: {cardData.quantity} <span className='status-on'></span>
+              Stock: {cardData.quantity}{" "}
+              <span
+                className={cardData.quantity !== 0 ? "status-on" : "status-off"}
+              ></span>
             </p>
             <ion-icon name='heart-outline'></ion-icon>
           </div>
@@ -29,7 +31,20 @@ function Card(props) {
                     <span className='reviewNumber'>(2)</span>
                   </div>
                 </div>
-                <ion-icon name='bag-add-outline'></ion-icon>
+                <button
+                  className={
+                    cardData.quantity !== 0 ? "buy-item" : "buy-item-off"
+                  }
+                  disabled={cardData.quantity === 0 ? true : false}
+                >
+                  <ion-icon
+                    name={
+                      cardData.quantity !== 0
+                        ? "bag-add-outline"
+                        : "ban-outline"
+                    }
+                  ></ion-icon>
+                </button>
               </div>
             </div>
           </div>

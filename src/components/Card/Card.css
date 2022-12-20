@@ -98,9 +98,9 @@
     cursor: pointer;
 }
 
-.item-info .price-and-buy ion-icon:hover {
+/* .item-info .price-and-buy ion-icon:hover {
     color: #F64005;
-}
+} */
 
 .item-info .price-and-buy .checked {
     color: rgb(236, 236, 42);
@@ -109,4 +109,20 @@
 .item-info .price-and-buy .reviewNumber {
     font-size: 12px;
     color: gray;
+}
+
+/* buy button */
+.item-info .buy-item {
+    border: none;
+    background-color: white;
+}
+
+.item-info .buy-item-off {
+    border: none;
+    background-color: white;
+    cursor: none;
+}
+
+.item-info .buy-item:hover ion-icon {
+    color: #F64005;
 }
