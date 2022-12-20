@@ -1,16 +1,14 @@
 .title_wrapper {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    font-family: 'Mali', cursive;
-    color: #B71100;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  font-family: 'Mali', cursive;
+  color: #b71100;
+  padding-top: 50px;
 }
-
 .title_wrapper .title {
-    font-size: 46px;
+  font-size: 46px;
 }
-
-
 .featured-items {
     margin: auto;
     margin-top: 100px;
@@ -18,40 +16,39 @@
 }
 
 .featured-items-1 {
-    width: 70%;
-    display: flex;
-    justify-content: flex-end;
-
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .featured-items-2 {
-    width: 70%;
-    display: flex;
-    justify-content: space-between;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .featured-items-2 p {
-    font-size: 19px;
+  font-size: 19px;
 }
 
 .featured-items .featured-image {
-    width: 65%;
-    margin-left: 10px;
-    margin-right: 10px;
-    /* border: 3px solid black; */
+  width: 65%;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* border: 3px solid black; */
 }
 
 .featured-items .featured-image img {
-    width: 100%;
+  width: 100%;
 }
 
 .featured-items .featured-description {
-    font-family: 'Mali', cursive;
-    width: 30%;
+  font-family: 'Mali', cursive;
+  width: 30%;
 }
 
 .featured-items .featured-description h2 {
-    color: #B71100;
+  color: #b71100;
 }
 
 .featured-items .featured-description p {
@@ -61,26 +58,29 @@
 }
 
 .featured-items .featured-description button {
-    background-color: #CC1739;
-    color: white;
-    padding: 7px 30px 7px 30px;
-    border: none;
-    border-radius: 25px;
+  background-color: #cc1739;
+  color: white;
+  padding: 7px 30px 7px 30px;
+  border: none;
+  border-radius: 25px;
 }
 
 @media all and (max-width: 600px) {
+  .featured-items,
+  .title_wrapper {
+    flex-wrap: wrap;
+  }
 
-    .featured-items,
-    .title_wrapper {
-        flex-wrap: wrap;
-    }
+  .featured-description {
+    order: 1;
+    flex-basis: 100%;
+  }
 
-    .featured-description {
-        order: 1;
-        flex-basis: 100%;
-    }
+  .featured-image {
+    flex-basis: 100%;
+  }
+}
 
-    .featured-image {
-        flex-basis: 100%;
-    }
+.wrapper-advertising {
+  height: 100px;
 }
