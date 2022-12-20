@@ -10,10 +10,11 @@
     font-size: 46px;
 }
 
+
 .featured-items {
     margin: auto;
     margin-top: 100px;
-    text-align: justify;
+
 }
 
 .featured-items-1 {
@@ -54,6 +55,7 @@
 }
 
 .featured-items .featured-description p {
+    text-align: justify;
     font-weight: bold;
     color: white;
 }

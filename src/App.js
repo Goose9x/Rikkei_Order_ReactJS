@@ -5,6 +5,7 @@ import LoginContainer from "./pages/LoginContainer";
 import RegisterContainer from "./pages/RegisterContainer";
 import HomepageWrapper from "./pages/ComponentsMainPage/HomepageWrapper";
 import AllItemsPage from "./pages/ComponentsMainPage/AllItemsPage";
+import CartWrapper from "./pages/CartWrapper";
 function App() {
   return (
     <>
@@ -14,7 +15,7 @@ function App() {
         <Route path='/' element={<MainPage />}>
           <Route path='/' element={<HomepageWrapper />}></Route>
           <Route path='/all_item' element={<AllItemsPage />}></Route>
-          <Route path='/cart' element={<Cart/>} />
+          <Route path='/cart' element={<CartWrapper />} />
         </Route>
       </Routes>
     </>

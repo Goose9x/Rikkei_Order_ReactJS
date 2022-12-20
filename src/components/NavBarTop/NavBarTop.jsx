@@ -1,7 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
 function NavBarTop() {
+  const [username, setUsername] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
+  console.log(cookies);
+  useEffect(() => {
+    // console.log(Cookies.get("userId"));
+    // console.log(Cookies.get("role"));
+    // console.log(Cookies.get("name"));
+    // console.log(Cookies.get("avatar"));
+    if (Cookies.get("name")) {
+      setUsername(Cookies.get("name"));
+    }
+  }, []);
+
+  const logOut = () => {
+    removeCookie("name", { path: "/" });
+    removeCookie("role", { path: "/" });
+    removeCookie("userId", { path: "/" });
+    removeCookie("avatar", { path: "/" });
+    window.location.href = "http://localhost:8000/";
+  };
   return (
     <>
       <div className='navbar-top'>
@@ -20,15 +42,47 @@ function NavBarTop() {
           </button>
         </div>
         <div className='user'>
-          <Link>
-            <ion-icon name='heart'></ion-icon>
-          </Link>
-          <Link>
-            <ion-icon name='bag-handle'></ion-icon>
-          </Link>
-          <Link>
-            <ion-icon name='person'></ion-icon>
-          </Link>
+          <div className='user-profile'>
+            <Link>
+              {username ? (
+                <div className='user_display'>
+                  <div className='user_display-image'>
+                    <img
+                      src='https://i.vietgiaitri.com/2019/1/26/tuyen-tap-nhung-hinh-anh-gai-dep-nam-2019-gay-nhieu-chu-y-cua-co-111998.png'
+                      alt='.'
+                    />
+                  </div>
+                  {username}
+                  <ul className='dropdown-menu'>
+                    <li>
+                      <a className='dropdown-item' href='/'>
+                        Tài khoản
+                      </a>
+                    </li>
+                    <li>
+                      <a className='dropdown-item' href='/'>
+                        Giỏ hàng
+                      </a>
+                    </li>
+                    <li>
+                      <a className='dropdown-item' href='/'>
+                        Yêu thích
+                      </a>
+                    </li>
+                    <li>
+                      <button className='dropdown-item' onClick={logOut}>
+                        Đăng xuất
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <div className='user-profile-login'>
+                  <Link to='/login'>Đăng nhập/Đăng kí</Link>
+                </div>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
     </>

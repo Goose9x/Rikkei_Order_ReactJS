@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Login from "../components/Login/Login";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 
 function LoginContainer() {
-  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
+  const [cookies, setCookie] = useCookies(["loginCookie"]);
   const [error, setError] = useState("");
   const onFinish = (values) => {
     const data = {
@@ -27,7 +27,7 @@ function LoginContainer() {
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Your work has been saved",
+            title: "Đăng nhập thành công",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -35,7 +35,10 @@ function LoginContainer() {
           setCookie("userId", data.cookie.userId);
           setCookie("role", data.cookie.role);
           setCookie("name", data.cookie.name);
-          window.location.href = "/";
+          setCookie("avatar", data.cookie.avatar);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1500);
         } else {
           toast(data.message);
         }

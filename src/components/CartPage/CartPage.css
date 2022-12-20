@@ -3,13 +3,10 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
-  background-image: url("../../asset/background.jpg");
-}
+
 .modal-body {
   width: 80%;
   margin: auto;
-  margin-top: 30px;
 }
 
 .cart-header {
@@ -118,6 +115,7 @@ body {
   margin-right: 10px;
   font-style: italic;
 }
+
 .thanhtoan {
   font-size: 15px;
   padding: 5px 5px 5px 5px;
