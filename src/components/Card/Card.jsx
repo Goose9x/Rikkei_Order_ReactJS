@@ -16,6 +16,11 @@ function Card(props) {
             <ion-icon name='heart-outline'></ion-icon>
           </div>
           <div className='item-info'>
+            <div
+              className={cardData.quantity === 0 ? "sold-out" : "display-none"}
+            >
+              HẾT HÀNG
+            </div>
             <img src={cardData.image} className='card-img-top' alt='...' />
             <div className='card-body'>
               <h5 className='card-title'>{cardData.name} </h5>

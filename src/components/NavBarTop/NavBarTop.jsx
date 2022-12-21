@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
-function NavBarTop() {
+function NavBarTop(props) {
+  let { handleSetDefaultCate } = props;
   const [username, setUsername] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   console.log(cookies);
@@ -31,7 +32,9 @@ function NavBarTop() {
         <div className='nav-logo'>RIKKEI MART</div>
         <div className='nav-menu'>
           <Link to='/'>Home</Link>
-          <Link to='/all_item'>All items</Link>
+          <Link to='/all_item' onClick={handleSetDefaultCate}>
+            All items
+          </Link>
           <Link to='#'>News</Link>
           <Link to='#'>About us</Link>
           <Link to='#'>Contact us</Link>
