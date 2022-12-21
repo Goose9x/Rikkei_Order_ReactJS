@@ -31,7 +31,7 @@ function TopRated() {
           <button className='btn'>Xem thêm</button>
         </div>
         <Slider {...settings}>
-          <div className='abc'>
+          <div>
             <TopRated0 />
           </div>
           <div>

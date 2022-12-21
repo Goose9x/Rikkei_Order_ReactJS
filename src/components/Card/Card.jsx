@@ -1,11 +1,10 @@
-import image from "../../assets/bimbim1.png";
 import "./Card.css";
 function Card(props) {
   let cardData = props.cardData;
   return (
     <>
       <div className='col'>
-        <div className='food-card card'>
+        <div className='product-card card'>
           <div className='favourite'>
             <p className='quantity'>
               Stock: {cardData.quantity}{" "}
@@ -26,7 +25,7 @@ function Card(props) {
               <h5 className='card-title'>{cardData.name} </h5>
               <div className='price-and-buy'>
                 <div>
-                  <p className='card-text'>đ{cardData.sellPrice}</p>
+                  <p className='product-name'>đ{cardData.sellPrice}</p>
                   <div className='rating'>
                     <span className='fa fa-star checked'></span>
                     <span className='fa fa-star checked'></span>

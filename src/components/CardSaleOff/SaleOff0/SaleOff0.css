@@ -7,7 +7,7 @@ body {
 
 .sale-col {
     padding: 10px;
- 
+
 }
 
 .sale-food-card {
@@ -27,24 +27,16 @@ body {
     width: 60%;
 }
 
-.sale-favourite {
-    /* display: flex;
-    width: 90%;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    align-items: center; */
-}
-
-.card-text{
+.card-text {
     font-size: 30px;
 }
-.card-text-sale{
+
+.card-text-sale {
     font-size: 20px;
     text-decoration: line-through;
 }
-.btn-sale{
+
+.btn-sale {
     margin-left: 5px;
     width: 100px;
     height: 35px;
@@ -111,19 +103,11 @@ body {
         flex-wrap: wrap;
         justify-content: space-between;
     }
+
     .ribbon {
         width: 30%;
     }
 }
-
-
-
-
-
-
-
-
-
 
 .sale-favourite p {
     font-size: 12px;
@@ -212,15 +196,16 @@ body {
     color: gray;
 }
 
-.box-img{
+.box-img {
     /* width: 400px; */
     height: 150px;
     width: 150px;
     /* border: 1px solid black; */
-  }
-  .box-img .card-img-top1{
+}
+
+.box-img .card-img-top1 {
     width: 100%;
     height: 100%;
     /* margin: auto; */
     /* overflow: hidden; */
-  }
+}

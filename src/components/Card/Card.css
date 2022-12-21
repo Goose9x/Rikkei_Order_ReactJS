@@ -2,19 +2,17 @@
     padding: 10px;
 }
 
-.food-card {
+.product-card {
     height: 100%;
     min-height: 189px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     position: relative;
     border-radius: 5px;
-    background: rgb(144, 146, 146);
-    background: linear-gradient(0deg, rgb(216, 218, 218) 0%, rgb(250, 246, 246) 100%);
-    opacity: 0.9;
+    background: #fff;
 }
 
-.food-card img {
+.product-card img {
     width: 60%;
     height: 120px;
 }
@@ -82,7 +80,7 @@
     font-size: 15px;
 }
 
-.item-info .card-text {
+.item-info .product-name {
     color: #F64005;
 }
 
@@ -143,4 +141,3 @@
 .item-info .buy-item:hover ion-icon {
     color: #F64005;
 }
-
