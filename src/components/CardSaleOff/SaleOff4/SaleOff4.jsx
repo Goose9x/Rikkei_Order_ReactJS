@@ -7,18 +7,18 @@ function Item() {
       <div className='sale-col'>
         <div className='sale-food-card card'>
           <div className='sale-favourite'>
-            <p className='sale-quantity'>
+            <div className='sale-quantity'>
 
 
-            <div class="ribbon">
-                <div class="wrap">
-                    <span class="ribbon6">Giảm 30%</span>
+            <div className="ribbon">
+                <div className="wrap">
+                    <span className="ribbon6">Giảm 30%</span>
                 </div>
             </div>
 
 
 
-            </p>
+            </div>
           
           </div>
           <div className='item-info'>
