@@ -6,8 +6,8 @@ import "./NavBarTop.css";
 function NavBarTop(props) {
   let { handleSetDefaultCate } = props;
   const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
-  console.log(cookies);
   useEffect(() => {
     // console.log(Cookies.get("userId"));
     // console.log(Cookies.get("role"));
@@ -15,6 +15,7 @@ function NavBarTop(props) {
     // console.log(Cookies.get("avatar"));
     if (Cookies.get("name")) {
       setUsername(Cookies.get("name"));
+      setAvatar(Cookies.get("avatar"));
     }
   }, []);
 
@@ -50,10 +51,7 @@ function NavBarTop(props) {
             {username ? (
               <div className='user_display'>
                 <div className='user_display-image'>
-                  <img
-                    src='https://i.vietgiaitri.com/2019/1/26/tuyen-tap-nhung-hinh-anh-gai-dep-nam-2019-gay-nhieu-chu-y-cua-co-111998.png'
-                    alt='.'
-                  />
+                  <img src={avatar} alt='.' />
                 </div>
                 {username}
                 <ul className='dropdown-menu'>

@@ -15,7 +15,11 @@ function AllItemsPage() {
       setData(data.data);
     };
     fetchData().catch(console.error);
+    if (category === "") {
+      setCataTitle("Tất Cả Sản Phẩm");
+    }
   }, [category]);
+
   const handleChooseCatagory = (e) => {
     if (e.target.id === "all") {
       setCategory("");

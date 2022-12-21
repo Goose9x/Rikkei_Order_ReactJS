@@ -1,6 +1,16 @@
 import "./Card.css";
+import { useCookies } from "react-cookie";
 function Card(props) {
   let cardData = props.cardData;
+  const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
+  const handleClick = (e) => {
+    if (Object.keys(cookies).length === 0) {
+      window.location.href = "http://localhost:8000/login";
+    } else {
+      console.log(cookies.userId);
+      console.log(e.target.id);
+    }
+  };
   return (
     <>
       <div className='col'>
@@ -36,12 +46,15 @@ function Card(props) {
                   </div>
                 </div>
                 <button
+                  id={cardData.id}
                   className={
                     cardData.quantity !== 0 ? "buy-item" : "buy-item-off"
                   }
                   disabled={cardData.quantity === 0 ? true : false}
+                  onClick={handleClick}
                 >
                   <ion-icon
+                    id={cardData.id}
                     name={
                       cardData.quantity !== 0
                         ? "bag-add-outline"
