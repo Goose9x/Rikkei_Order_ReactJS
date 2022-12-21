@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import "./TopRated.css";
-import CardTopRated from "../CardTopRated/CardTopRated";
+import TopRated0 from "../CardTopRated/TopRated0/TopRated0";
 import TopRated1 from "../CardTopRated/TopRated1/TopRated1";
 import TopRated2 from "../CardTopRated/TopRated2/TopRated2";
 import TopRated3 from "../CardTopRated/TopRated3/TopRated3";
@@ -19,7 +19,7 @@ function TopRated() {
     centerMode: true,
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: 5,
+    slidesToShow: 4,
     speed: 500,
   };
 
@@ -32,7 +32,7 @@ function TopRated() {
         </div>
         <Slider {...settings}>
           <div className='abc'>
-            <CardTopRated />
+            <TopRated0 />
           </div>
           <div>
             <TopRated1 />
