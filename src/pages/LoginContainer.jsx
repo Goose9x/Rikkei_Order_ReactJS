@@ -32,10 +32,10 @@ function LoginContainer() {
             timer: 1500,
           });
           console.log(data);
-          setCookie("userId", data.cookie.userId);
-          setCookie("role", data.cookie.role);
-          setCookie("name", data.cookie.name);
-          setCookie("avatar", data.cookie.avatar);
+          setCookie("userId", data.cookie.userId, { maxAge: 1800 });
+          setCookie("role", data.cookie.role, { maxAge: 1800 });
+          setCookie("name", data.cookie.name, { maxAge: 1800 });
+          setCookie("avatar", data.cookie.avatar, { maxAge: 1800 });
           setTimeout(() => {
             window.location.href = "/";
           }, 1500);
