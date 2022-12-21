@@ -6,7 +6,7 @@ function Item() {
   return (
     <>
       <div className='col'>
-        <div className='food-card card'>
+        <div className='top-food-card card'>
           <div className='top-favourite'>
             <p className='top-quantity'>
             <Link className="top-link" to='/all_item'>TOP</Link>

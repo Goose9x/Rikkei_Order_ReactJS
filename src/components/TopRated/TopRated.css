@@ -17,17 +17,14 @@
   border: none;
   border-radius: 25px;
 }
-.abc {
-  /* height: 300px; */
-  /* margin: auto; */
-}
+
 .top-col {
   padding: 10px;
 }
 
 .top-food-card {
   height: 100%;
-  min-height: 189px;
+height: 190px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   position: relative;
