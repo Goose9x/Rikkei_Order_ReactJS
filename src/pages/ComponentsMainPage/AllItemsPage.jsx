@@ -1,10 +1,10 @@
 import Category from "../../components/Category/Category";
 import Card from "../../components/Card/Card";
 import React, { useState, useEffect } from "react";
-
+import { useOutletContext } from "react-router-dom";
 function AllItemsPage() {
+  const [category, setCategory] = useOutletContext();
   const [data, setData] = useState([]);
-  const [category, setCategoty] = useState([]);
   const [cataTitle, setCataTitle] = useState("Tất cả sản phẩm");
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +17,21 @@ function AllItemsPage() {
     fetchData().catch(console.error);
   }, [category]);
   const handleChooseCatagory = (e) => {
-    setCategoty(e.target.id);
+    if (e.target.id === "all") {
+      setCategory("");
+      setCataTitle("Tất Cả Sản Phẩm");
+    } else {
+      setCategory(e.target.id);
+      if (e.target.id === "bimbim") {
+        setCataTitle("Bim Bim");
+      } else if (e.target.id === "drink") {
+        setCataTitle("Đồ Uống");
+      } else if (e.target.id === "snack") {
+        setCataTitle("Đồ Ăn Nhẹ");
+      } else {
+        setCataTitle("Đồ Ăn Khác");
+      }
+    }
   };
   if (data.length === 0) {
     return <div>...</div>;

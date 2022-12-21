@@ -1,14 +1,16 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
-import "../Category/Category.css"
+
+import "./Category.css";
 function Category(props) {
   let { handleChooseCatagory } = props;
   return (
     <>
       <div className='categories'>
         <div className='cate-title1'>
-          <Link to='#'>Tất cả sản phẩm</Link>
+          <Link id='all' to='#' onClick={handleChooseCatagory}>
+            Tất cả sản phẩm
+          </Link>
         </div>
         <div className='item-category'>
           <div

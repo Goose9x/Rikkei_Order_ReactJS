@@ -70,6 +70,7 @@
     flex-direction: column;
     align-items: center;
     height: 90%;
+    position: relative;
 }
 
 .item-info .card-body {
@@ -98,12 +99,23 @@
 
 .item-info .price-and-buy ion-icon {
     font-size: 30px;
-    cursor: pointer;
+
 }
 
-/* .item-info .price-and-buy ion-icon:hover {
-    color: #F64005;
-} */
+.item-info .sold-out {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    background-color: red;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+}
+
+.item-info .display-none {
+    display: none;
+}
 
 .item-info .price-and-buy .checked {
     color: rgb(236, 236, 42);
@@ -117,13 +129,15 @@
 /* buy button */
 .item-info .buy-item {
     border: none;
-    background-color: white;
+    background-color: #fff;
+    cursor: pointer;
 }
 
 .item-info .buy-item-off {
+    cursor: default;
     border: none;
-    background-color: white;
-    cursor: none;
+    background-color: #fff;
+    color: #F64005;
 }
 
 .item-info .buy-item:hover ion-icon {
