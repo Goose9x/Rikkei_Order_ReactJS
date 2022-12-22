@@ -8,6 +8,7 @@ import ResetpassContainer from "./pages/ResetpassContainer";
 import AllItemsPage from "./pages/ComponentsMainPage/AllItemsPage";
 import CartWrapper from "./pages/CartWrapper";
 import AllFavoriteProduct from "./pages/ComponentsMainPage/AllFavoriteProduct";
+import ItemDetail from "./pages/ComponentsMainPage/ItemDetail";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
           <Route path='/all_item' element={<AllItemsPage />}></Route>
           <Route path='/cart' element={<CartWrapper />} />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
+          <Route path='/item' element={<ItemDetail />}></Route>
         </Route>
       </Routes>
     </>
