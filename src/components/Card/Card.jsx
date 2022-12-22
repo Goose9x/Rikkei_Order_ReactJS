@@ -1,5 +1,6 @@
 import "./Card.css";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
 function Card(props) {
   let cardData = props.cardData;
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
@@ -9,12 +10,16 @@ function Card(props) {
     } else {
       console.log(cookies.userId);
       console.log(e.target.id);
+      toast("Thêm vào giỏ hàng thành công", {
+        autoClose: 1000,
+      });
     }
   };
   return (
     <>
       <div className='col'>
         <div className='product-card card'>
+          <ToastContainer autoClose={1000} />
           <div className='favourite'>
             <p className='quantity'>
               Stock: {cardData.quantity}{" "}

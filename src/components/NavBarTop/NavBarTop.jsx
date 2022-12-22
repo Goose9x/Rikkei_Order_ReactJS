@@ -66,9 +66,9 @@ function NavBarTop(props) {
                     </a>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='/'>
+                    <Link to='/favorite' className='dropdown-item' href='/'>
                       Yêu thích
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <button className='dropdown-item' onClick={logOut}>

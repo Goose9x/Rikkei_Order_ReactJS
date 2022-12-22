@@ -57,12 +57,9 @@ function Login(props) {
           <Form.Item name='remember' valuePropName='checked' noStyle>
             <div className='remember'>
               <Checkbox>Remember me</Checkbox>
-              <a
-                className='login-form-forgot'
-                href='https://www.facebook.com/rikkei.AnNT'
-              >
+              <Link to='/resetpass' className='login-form-forgot'>
                 Forgot password
-              </a>
+              </Link>
             </div>
           </Form.Item>
         </Form.Item>
