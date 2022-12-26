@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 function Card(props) {
   let cardData = props.cardData;
+  // console.log(cardData);
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const handleClick = (e) => {
     if (Object.keys(cookies).length === 0) {
@@ -15,6 +16,17 @@ function Card(props) {
       });
     }
   };
+  const handleClickLike =(e)=>{
+    if(Object.keys(cookies).length === 0){
+      window.location.href="http://localhost:8000/login";
+    }else{
+      console.log(cookies.userId);
+      console.log(e.target.id);
+      toast("Thêm vào trang yêu thích thành công", {
+        autoClose: 1000,
+      });
+    }
+  }
   return (
     <>
       <div className='col'>
@@ -27,7 +39,7 @@ function Card(props) {
                 className={cardData.quantity !== 0 ? "status-on" : "status-off"}
               ></span>
             </p>
-            <ion-icon name='heart-outline'></ion-icon>
+            <button className="card-btn-like" onClick={handleClickLike}><ion-icon id={cardData.id} name='heart-outline'></ion-icon></button>
           </div>
           <div className='item-info'>
             <div
@@ -59,6 +71,7 @@ function Card(props) {
                   onClick={handleClick}
                 >
                   <ion-icon
+                  
                     id={cardData.id}
                     name={
                       cardData.quantity !== 0

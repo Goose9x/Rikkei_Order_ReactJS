@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
+
 function NavBarTop(props) {
   let { handleSetDefaultCate } = props;
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
+  const [dataSearch, setDataSearch] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [input, setInput] = useState();
   useEffect(() => {
     // console.log(Cookies.get("userId"));
     // console.log(Cookies.get("role"));
@@ -27,6 +31,40 @@ function NavBarTop(props) {
     window.location.href = "http://localhost:8000/";
   };
 
+  useEffect(() => {
+    const fetchDataSearch = async () => {
+      const res = await fetch(
+        `http://localhost:3000/product/search?productName=${searchValue}`
+      );
+      const data = await res.json();
+
+      setDataSearch(data.data);
+      // console.log(data.data);
+    };
+    fetchDataSearch().catch(console.error);
+  }, [searchValue]);
+
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+    // console.log(e.target.value);
+  };
+  const handleClick = (e) => {
+    // console.log("abc");
+ 
+    setSearchValue("");
+  };
+  const handleChooseItem = (e) => {
+    // console.log(e.target.id);
+    setSearchValue("")
+  };
+  const handleClickInput=(e)=>{
+    if(e.target.value){
+      setSearchValue(e.target.value)
+    }else{
+      setSearchValue("mua hàng đi bạn ơi")
+      
+    }
+  }
   return (
     <>
       <div className='navbar-top'>
@@ -41,10 +79,42 @@ function NavBarTop(props) {
           <Link to='#'>Contact us</Link>
         </div>
         <div className='search-bar'>
-          <input type='text' placeholder='Browse for more...' />
-          <button>
-            <ion-icon name='search-outline'></ion-icon>
+          <input
+            value={searchValue}
+            onChange={handleChange}
+            onClick={handleClickInput}
+            type='text'
+            placeholder='Browse for more...'
+          />
+          <button onClick={handleClick}>
+            <Link to="/item"><ion-icon name='search-outline'></ion-icon></Link>
+            
           </button>
+          {dataSearch ? (
+            <>
+              <ul className='drop-down'>
+                {dataSearch.map((e, i) => (
+                  
+                  <li
+                    key={i}
+                    onClick={handleChooseItem}
+                    className='search-item-name'
+                  >
+                     <div className="box-search-img"><img src={dataSearch[i].image} className='search-img' alt='...' /></div>
+                    <Link
+                      id={dataSearch[i].id}
+                      to='/item'
+                      className='item-search'
+                    >
+                      {dataSearch[i].name.toLowerCase()}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <div className='drop-down'></div>
+          )}
         </div>
         <div className='user'>
           <div className='user-profile'>

@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./TopRated.css";
-import TopRated0 from "../CardTopRated/TopRated0/TopRated0";
 import TopRated1 from "../CardTopRated/TopRated1/TopRated1";
-import TopRated2 from "../CardTopRated/TopRated2/TopRated2";
-import TopRated3 from "../CardTopRated/TopRated3/TopRated3";
-import TopRated4 from "../CardTopRated/TopRated4/TopRated4";
-import TopRated5 from "../CardTopRated/TopRated5/TopRated5";
-import TopRated6 from "../CardTopRated/TopRated6/TopRated6";
-import TopRated7 from "../CardTopRated/TopRated7/TopRated7";
-import TopRated8 from "../CardTopRated/TopRated8/TopRated8";
-import TopRated9 from "../CardTopRated/TopRated9/TopRated9";
-import TopRated10 from "../CardTopRated/TopRated10/TopRated10";
-import TopRated11 from "../CardTopRated/TopRated11/TopRated11";
+
 function TopRated() {
+  const [dataTopRated, setDataTopRated] = useState([]);
+  useEffect(() => {
+    const fetchDataTopRated = async () => {
+      const res = await fetch("http://localhost:3000/cart/top");
+      const data = await res.json();
+      setDataTopRated(data.data);
+      // console.log(data.data);
+    };
+    fetchDataTopRated().catch(console.error);
+  }, []);
+
   const settings = {
     className: "center",
     centerMode: true,
@@ -31,42 +32,11 @@ function TopRated() {
           <button className='btn'>Xem thêm</button>
         </div>
         <Slider {...settings}>
-          <div>
-            <TopRated0 />
-          </div>
-          <div>
-            <TopRated1 />
-          </div>
-          <div>
-            <TopRated2 />
-          </div>
-          <div>
-            <TopRated3 />
-          </div>
-          <div>
-            <TopRated4 />
-          </div>
-          <div>
-            <TopRated5 />
-          </div>
-          <div>
-            <TopRated6 />
-          </div>
-          <div>
-            <TopRated7 />
-          </div>
-          <div>
-            <TopRated8 />
-          </div>
-          <div>
-            <TopRated9 />
-          </div>
-          <div>
-            <TopRated10 />
-          </div>
-          <div>
-            <TopRated11 />
-          </div>
+          {dataTopRated.map((e, i) => (
+            <div>
+              <TopRated1 key={i} TopRatedData={e} />
+            </div>
+          ))}
         </Slider>
       </div>
     </>

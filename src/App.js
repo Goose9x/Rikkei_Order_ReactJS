@@ -21,7 +21,7 @@ function App() {
           <Route path='/all_item' element={<AllItemsPage />}></Route>
           <Route path='/cart' element={<CartWrapper />} />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
-          <Route path='/item' element={<ItemDetail />}></Route>
+          <Route path='/item/' element={<ItemDetail />}></Route>
         </Route>
       </Routes>
     </>
