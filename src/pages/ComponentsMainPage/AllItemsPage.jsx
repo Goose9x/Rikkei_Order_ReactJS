@@ -1,8 +1,10 @@
 import Category from "../../components/Category/Category";
 import Card from "../../components/Card/Card";
+import { ToastContainer, toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-function AllItemsPage() {
+function AllItemsPage(props) {
+  const { handleAddingCart } = props;
   const [category, setCategory] = useOutletContext();
   const [data, setData] = useState([]);
   const [cataTitle, setCataTitle] = useState("Tất cả sản phẩm");
@@ -19,7 +21,6 @@ function AllItemsPage() {
       setCataTitle("Tất Cả Sản Phẩm");
     }
   }, [category]);
-
   const handleChooseCatagory = (e) => {
     if (e.target.id === "all") {
       setCategory("");
@@ -48,9 +49,10 @@ function AllItemsPage() {
       </div>
       <div className='row row-cols-1 row-cols-md-5 g-5'>
         {data.map((e, i) => (
-          <Card key={i} cardData={e} />
+          <Card key={i} cardData={e} handleAddingCart={handleAddingCart} />
         ))}
       </div>
+      <ToastContainer autoClose={1000} />
     </>
   );
 }

@@ -1,25 +1,12 @@
 import "./Card.css";
-import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+
 function Card(props) {
-  let cardData = props.cardData;
-  const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
-  const handleClick = (e) => {
-    if (Object.keys(cookies).length === 0) {
-      window.location.href = "http://localhost:8000/login";
-    } else {
-      console.log(cookies.userId);
-      console.log(e.target.id);
-      toast("Thêm vào giỏ hàng thành công", {
-        autoClose: 1000,
-      });
-    }
-  };
+  let { cardData, handleAddingCart } = props;
+
   return (
     <>
       <div className='col'>
         <div className='product-card card'>
-          <ToastContainer autoClose={1000} />
           <div className='favourite'>
             <p className='quantity'>
               Stock: {cardData.quantity}{" "}
@@ -56,7 +43,7 @@ function Card(props) {
                     cardData.quantity !== 0 ? "buy-item" : "buy-item-off"
                   }
                   disabled={cardData.quantity === 0 ? true : false}
-                  onClick={handleClick}
+                  onClick={handleAddingCart}
                 >
                   <ion-icon
                     id={cardData.id}
