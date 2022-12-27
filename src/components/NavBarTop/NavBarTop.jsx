@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
 function NavBarTop(props) {
-  let { handleSetDefaultCate } = props;
+  let { handleSetDefaultCate, cartData } = props;
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
@@ -61,9 +61,9 @@ function NavBarTop(props) {
                     </a>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='/'>
-                      Giỏ hàng
-                    </a>
+                    <Link className='dropdown-item' to='/cart'>
+                      Giỏ hàng ({cartData.length})
+                    </Link>
                   </li>
                   <li>
                     <Link to='/favorite' className='dropdown-item' href='/'>

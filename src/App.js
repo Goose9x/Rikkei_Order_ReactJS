@@ -14,14 +14,25 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
+  const [allData, setAllData] = useState("");
+  const [cartData, setCartData] = useState("");
+  const [cartStatus, setCartStatus] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`http://127.0.0.1:3000/product?category=`);
+      const data = await res.json();
+      setAllData(data.data);
+    };
+    fetchData().catch(console.error);
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`http://127.0.0.1:3000/cart/${cookies.userId}`);
       const data = await res.json();
-      console.log(data.cartCounter);
+      setCartData(data.data);
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [cartStatus]);
   const handleAddingCart = (e) => {
     if (Object.keys(cookies).length === 0) {
       window.location.href = "http://localhost:8000/login";
@@ -43,8 +54,9 @@ function App() {
       const fetchData = async () => {
         const res = await fetch("http://127.0.0.1:3000/cart", settingsPost);
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
       };
+      setCartStatus(!cartStatus);
       fetchData().catch(console.error);
       toast.success("Thêm vào giỏ hàng thành công", {
         autoClose: 1000,
@@ -52,19 +64,31 @@ function App() {
       });
     }
   };
+  
+  if (!allData || !cartData) {
+    return <div>loading...</div>;
+  }
   return (
     <>
       <Routes>
         <Route path='/login' element={<LoginContainer />}></Route>
         <Route path='/register' element={<RegisterContainer />}></Route>
         <Route path='/resetpass' element={<ResetpassContainer />}></Route>
-        <Route path='/' element={<MainPage />}>
+        <Route path='/' element={<MainPage cartData={cartData} />}>
           <Route path='/' element={<HomepageWrapper />}></Route>
           <Route
             path='/all_item'
             element={<AllItemsPage handleAddingCart={handleAddingCart} />}
           ></Route>
-          <Route path='/cart' element={<CartWrapper />} />
+          <Route
+            path='/cart'
+            element={
+              <CartWrapper
+                allData={allData}
+                cartData={cartData}
+              />
+            }
+          />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
           <Route path='/item' element={<ItemDetail />}></Route>
         </Route>
