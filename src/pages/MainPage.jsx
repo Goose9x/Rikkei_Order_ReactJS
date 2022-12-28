@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import React, { useState } from "react";
 function MainPage(props) {
-  let { cartData } = props;
+  let {cartData} = props
   const [category, setCategory] = useState("");
   const handleSetDefaultCate = () => {
     setCategory("");

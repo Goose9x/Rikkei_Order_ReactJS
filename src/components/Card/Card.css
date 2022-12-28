@@ -141,3 +141,7 @@
 .item-info .buy-item:hover ion-icon {
     color: #F64005;
 }
+.card-btn-like{
+    border: none;
+    background-color: #fff;
+}

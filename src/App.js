@@ -90,7 +90,7 @@ function App() {
             }
           />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
-          <Route path='/item' element={<ItemDetail />}></Route>
+          <Route path='/item/:id' element={<ItemDetail />}></Route>
         </Route>
       </Routes>
     </>
