@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
 import MainPage from "./pages/MainPage";
 import { Routes, Route, Link } from "react-router-dom";
 import LoginContainer from "./pages/LoginContainer";
@@ -21,7 +22,7 @@ function App() {
           <Route path='/all_item' element={<AllItemsPage />}></Route>
           <Route path='/cart' element={<CartWrapper />} />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
-          <Route path='/item/' element={<ItemDetail />}></Route>
+          <Route path='/item/:id' element={<ItemDetail />}></Route>
         </Route>
       </Routes>
     </>

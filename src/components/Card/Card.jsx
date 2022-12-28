@@ -1,10 +1,12 @@
 import "./Card.css";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect } from "react";
 function Card(props) {
-  let cardData = props.cardData;
-  // console.log(cardData);
+  let { cardData, status } = props;
+  console.log(props);
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
+  const [likeStatus, setLikeStatus] = useState(status);
   const handleClick = (e) => {
     if (Object.keys(cookies).length === 0) {
       window.location.href = "http://localhost:8000/login";
@@ -16,30 +18,57 @@ function Card(props) {
       });
     }
   };
-  const handleClickLike =(e)=>{
-    if(Object.keys(cookies).length === 0){
-      window.location.href="http://localhost:8000/login";
-    }else{
+  const handleClickLike = (e) => {
+    if (Object.keys(cookies).length === 0) {
+      window.location.href = "http://localhost:8000/login";
+    } else {
       console.log(cookies.userId);
       console.log(e.target.id);
-      toast("Thêm vào trang yêu thích thành công", {
+      const fetchDataFavorite = async () => {
+        const res = await fetch("http://localhost:3000/favorite", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID3: cookies.userId,
+            productID3: e.target.id,
+            id: Math.floor(Math.random() * 999999),
+          }),
+        });
+      };
+      fetchDataFavorite().catch(console.error);
+      setLikeStatus(!likeStatus);
+      toast.success("Đã thêm sản phẩm vào yêu thích", {
         autoClose: 1000,
+        hideProgressBar: true,
       });
     }
-  }
+  };
+
   return (
     <>
-      <div className='col'>
+      <div id={cardData.id} className='col'>
         <div className='product-card card'>
           <ToastContainer autoClose={1000} />
           <div className='favourite'>
             <p className='quantity'>
-              Stock: {cardData.quantity}{" "}
+              Stock: {cardData.quantity}
               <span
                 className={cardData.quantity !== 0 ? "status-on" : "status-off"}
               ></span>
             </p>
-            <button className="card-btn-like" onClick={handleClickLike}><ion-icon id={cardData.id} name='heart-outline'></ion-icon></button>
+            <button
+              id={cardData.id}
+              className='card-btn-like'
+              onClick={handleClickLike}
+            >
+              <ion-icon
+                id={cardData.id}
+                name={likeStatus === true ? "heart" : "heart-outline"}
+              ></ion-icon>
+            </button>
           </div>
           <div className='item-info'>
             <div
@@ -71,7 +100,6 @@ function Card(props) {
                   onClick={handleClick}
                 >
                   <ion-icon
-                  
                     id={cardData.id}
                     name={
                       cardData.quantity !== 0

@@ -2,10 +2,20 @@ import Category from "../../components/Category/Category";
 import Card from "../../components/Card/Card";
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-function AllItemsPage() {
+function AllItemsPage(props) {
   const [category, setCategory] = useOutletContext();
   const [data, setData] = useState([]);
   const [cataTitle, setCataTitle] = useState("Tất cả sản phẩm");
+  const [likeData, setLikeData] = useState([]);
+  useEffect(() => {
+    const fetchDataheart = async () => {
+      const res = await fetch("http://localhost:3000/favorite/heart");
+      const data = await res.json();
+      setLikeData(data.data);
+      console.log(data.data);
+    };
+    fetchDataheart().catch(console.error);
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
@@ -48,7 +58,15 @@ function AllItemsPage() {
       </div>
       <div className='row row-cols-1 row-cols-md-5 g-5'>
         {data.map((e, i) => (
-          <Card key={i} cardData={e} />
+          <Card
+            key={i}
+            cardData={e}
+            status={
+              likeData.findIndex((e1) => e1.productID3 === e.id) >= 0
+                ? true
+                : false
+            }
+          />
         ))}
       </div>
     </>

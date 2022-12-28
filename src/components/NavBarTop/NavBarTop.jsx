@@ -11,7 +11,6 @@ function NavBarTop(props) {
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const [dataSearch, setDataSearch] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [input, setInput] = useState();
   useEffect(() => {
     // console.log(Cookies.get("userId"));
     // console.log(Cookies.get("role"));
@@ -39,32 +38,27 @@ function NavBarTop(props) {
       const data = await res.json();
 
       setDataSearch(data.data);
-      // console.log(data.data);
     };
     fetchDataSearch().catch(console.error);
   }, [searchValue]);
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
-    // console.log(e.target.value);
   };
-  const handleClick = (e) => {
-    // console.log("abc");
- 
+  const handleClickSearch = (e) => {
+    alert("chưa làm bạn ơi");
     setSearchValue("");
   };
   const handleChooseItem = (e) => {
-    // console.log(e.target.id);
-    setSearchValue("")
+    setSearchValue("");
   };
-  const handleClickInput=(e)=>{
-    if(e.target.value){
-      setSearchValue(e.target.value)
-    }else{
-      setSearchValue("mua hàng đi bạn ơi")
-      
+  const handleClickInput = (e) => {
+    if (e.target.value) {
+      setSearchValue(e.target.value);
+    } else {
+      setSearchValue("");
     }
-  }
+  };
   return (
     <>
       <div className='navbar-top'>
@@ -86,29 +80,33 @@ function NavBarTop(props) {
             type='text'
             placeholder='Browse for more...'
           />
-          <button onClick={handleClick}>
-            <Link to="/item"><ion-icon name='search-outline'></ion-icon></Link>
-            
+          <button onClick={handleClickSearch}>
+            <Link to='/item/'>
+              <ion-icon name='search-outline'></ion-icon>
+            </Link>
           </button>
           {dataSearch ? (
             <>
               <ul className='drop-down'>
                 {dataSearch.map((e, i) => (
-                  
-                  <li
-                    key={i}
-                    onClick={handleChooseItem}
-                    className='search-item-name'
+                  <Link
+                    key={e.id}
+                    id={e.id}
+                    to={`/item/${e.id}`}
+                    className='item-search'
                   >
-                     <div className="box-search-img"><img src={dataSearch[i].image} className='search-img' alt='...' /></div>
-                    <Link
-                      id={dataSearch[i].id}
-                      to='/item'
-                      className='item-search'
+                    <li
+                      key={i}
+                      onClick={handleChooseItem}
+                      className='search-item-name'
                     >
-                      {dataSearch[i].name.toLowerCase()}
-                    </Link>
-                  </li>
+                      <div className='box-search-img'>
+                        <img src={e.image} className='search-img' alt='...' />
+                      </div>
+
+                      {e.name.toLowerCase()}
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </>
