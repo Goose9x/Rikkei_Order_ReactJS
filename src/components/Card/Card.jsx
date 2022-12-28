@@ -4,20 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 function Card(props) {
   let { cardData, status, handleAddingCart } = props;
-  console.log(props);
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const [likeStatus, setLikeStatus] = useState(status);
-  const handleClick = (e) => {
-    if (Object.keys(cookies).length === 0) {
-      window.location.href = "http://localhost:8000/login";
-    } else {
-      console.log(cookies.userId);
-      console.log(e.target.id);
-      toast("Thêm vào giỏ hàng thành công", {
-        autoClose: 1000,
-      });
-    }
-  };
   const handleClickLike = (e) => {
     if (Object.keys(cookies).length === 0) {
       window.location.href = "http://localhost:8000/login";
@@ -40,10 +28,6 @@ function Card(props) {
       };
       fetchDataFavorite().catch(console.error);
       setLikeStatus(!likeStatus);
-      toast.success("Đã thêm sản phẩm vào yêu thích", {
-        autoClose: 1000,
-        hideProgressBar: true,
-      });
     }
   };
 
