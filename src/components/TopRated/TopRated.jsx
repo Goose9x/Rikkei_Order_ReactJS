@@ -33,7 +33,7 @@ function TopRated() {
         </div>
         <Slider {...settings}>
           {dataTopRated.map((e, i) => (
-            <div>
+            <div key={i}>
               <TopRated1 key={i} TopRatedData={e} />
             </div>
           ))}

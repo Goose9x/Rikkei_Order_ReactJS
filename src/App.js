@@ -16,7 +16,9 @@ function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const [allData, setAllData] = useState("");
   const [cartData, setCartData] = useState("");
+  const [itemSearchData, setItemSearchData] = useState("");
   const [cartStatus, setCartStatus] = useState(true);
+  const [pickSearchStatus, setPickSearchStatus] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`http://127.0.0.1:3000/product?category=`);
@@ -64,7 +66,16 @@ function App() {
       });
     }
   };
-  
+  const handleChooseSearchItem = (e) => {
+    let id = e.target.id;
+    setPickSearchStatus(!pickSearchStatus);
+    const fetchDataSearch = async () => {
+      const res = await fetch(`http://localhost:3000/product/${id}`);
+      const data = await res.json();
+      setItemSearchData(data.data);
+    };
+    fetchDataSearch().catch(console.error);
+  };
   if (!allData || !cartData) {
     return <div>loading...</div>;
   }
@@ -74,7 +85,15 @@ function App() {
         <Route path='/login' element={<LoginContainer />}></Route>
         <Route path='/register' element={<RegisterContainer />}></Route>
         <Route path='/resetpass' element={<ResetpassContainer />}></Route>
-        <Route path='/' element={<MainPage cartData={cartData} />}>
+        <Route
+          path='/'
+          element={
+            <MainPage
+              handleChooseSearchItem={handleChooseSearchItem}
+              cartData={cartData}
+            />
+          }
+        >
           <Route path='/' element={<HomepageWrapper />}></Route>
           <Route
             path='/all_item'
@@ -82,15 +101,13 @@ function App() {
           ></Route>
           <Route
             path='/cart'
-            element={
-              <CartWrapper
-                allData={allData}
-                cartData={cartData}
-              />
-            }
+            element={<CartWrapper allData={allData} cartData={cartData} />}
           />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
-          <Route path='/item/:id' element={<ItemDetail />}></Route>
+          <Route
+            path='/item/:id'
+            element={<ItemDetail itemSearchData={itemSearchData} />}
+          ></Route>
         </Route>
       </Routes>
     </>

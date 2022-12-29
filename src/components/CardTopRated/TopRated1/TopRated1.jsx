@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function Item(props) {
   let TopRatedData = props.TopRatedData
-  console.log(TopRatedData);
   return (
     <>
       <div className='col'>

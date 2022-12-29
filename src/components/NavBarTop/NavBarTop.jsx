@@ -5,23 +5,18 @@ import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
 
 function NavBarTop(props) {
-  let { handleSetDefaultCate, cartData } = props;
+  let { handleSetDefaultCate, cartData, handleChooseSearchItem } = props;
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const [dataSearch, setDataSearch] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
-    // console.log(Cookies.get("userId"));
-    // console.log(Cookies.get("role"));
-    // console.log(Cookies.get("name"));
-    // console.log(Cookies.get("avatar"));
     if (Cookies.get("name")) {
       setUsername(Cookies.get("name"));
       setAvatar(Cookies.get("avatar"));
     }
   }, []);
-
   const logOut = () => {
     removeCookie("name", { path: "/" });
     removeCookie("role", { path: "/" });
@@ -29,19 +24,16 @@ function NavBarTop(props) {
     removeCookie("avatar", { path: "/" });
     window.location.href = "http://localhost:8000/";
   };
-
   useEffect(() => {
     const fetchDataSearch = async () => {
       const res = await fetch(
         `http://localhost:3000/product/search?productName=${searchValue}`
       );
       const data = await res.json();
-
       setDataSearch(data.data);
     };
     fetchDataSearch().catch(console.error);
   }, [searchValue]);
-
   const handleChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -94,8 +86,10 @@ function NavBarTop(props) {
                     id={e.id}
                     to={`/item/${e.id}`}
                     className='item-search'
+                    onClick={handleChooseSearchItem}
                   >
                     <li
+                      id={e.id}
                       key={i}
                       onClick={handleChooseItem}
                       className='search-item-name'
@@ -103,7 +97,6 @@ function NavBarTop(props) {
                       <div className='box-search-img'>
                         <img src={e.image} className='search-img' alt='...' />
                       </div>
-
                       {e.name.toLowerCase()}
                     </li>
                   </Link>

@@ -34,7 +34,7 @@ function SaleOff() {
         </div>
         <Slider {...settings}>
           {dataSaleOff.map((e, i) => (
-            <div>
+            <div key={i}>
               <SaleOff0 key={i} SaleOffData={e} />
             </div>
           ))}

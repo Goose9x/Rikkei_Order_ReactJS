@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function Item(props) {
   let SaleOffData = props.SaleOffData;
-  console.log(SaleOffData.image);
   return (
     <>
       <div className='sale-col'>
@@ -13,7 +12,10 @@ function Item(props) {
               <div className='sale-ribbon'>
                 <div className='sale-wrap'>
                   <span className='sale-ribbon6'>
-                    <span className="text-sale">Giảm</span> <span className="text-sale-number">{SaleOffData.percentReduction}%</span> 
+                    <span className='text-sale'>Giảm</span>{" "}
+                    <span className='text-sale-number'>
+                      {SaleOffData.percentReduction}%
+                    </span>
                   </span>
                 </div>
               </div>
@@ -44,13 +46,12 @@ function Item(props) {
                     <span className='sale-reviewNumber'>(2)</span>
                   </div>
                 </div>
-             
-                  <button className='sale-btn'>
-                    <Link className='sale-top-link' to='/all_item'>
-                      Mua Ngay
-                    </Link>
-                  </button>
-              
+
+                <button className='sale-btn'>
+                  <Link className='sale-top-link' to='/all_item'>
+                    Mua Ngay
+                  </Link>
+                </button>
               </div>
             </div>
           </div>
