@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-
-import "./CartPage.css";
 import Swal from "sweetalert2";
+import { redirect } from "react-router-dom";
+import "./CartPage.css";
 function Cart(props) {
   let { cartList } = props;
   const sum1 = cartList.reduce(
@@ -19,9 +19,53 @@ function Cart(props) {
     );
     setSum((pre) => newSum);
   }, [data]);
+  const handlePurchaseConfirm = (e) => {
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "Mua hàng thành công",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    console.log(data);
+    console.log(cookies.userId);
+    for (let i = 0; i < data.length; i++) {
+      const addHistoryPurchase = async () => {
+        const res = await fetch("http://localhost:3000/history", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: data[i].userID2,
+            productId: data[i].productID2,
+            sellPrice: data[i].sellPrice,
+            quantity: data[i].cartQuantity,
+          }),
+        });
+      };
+      addHistoryPurchase().catch(console.error);
+    }
+    const deleteCartByUser = async () => {
+      const res = await fetch(
+        `http://localhost:3000/cart?userId=${cookies.userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    };
+    deleteCartByUser().catch(console.error);
+    setTimeout(() => {
+      window.location.href = "http://localhost:8000/all_item";
+    }, 2000);
+  };
   const handleDeleteCart = (id) => {
     setData(data.filter((e) => e.productID2 !== id));
-
     const fetchData = async () => {
       const res = await fetch(`http://127.0.0.1:3000/cart/${id}`, {
         method: "DELETE",
@@ -35,11 +79,25 @@ function Cart(props) {
     fetchData().catch(console.error);
   };
   const handleChange = (value, id) => {
-    console.log(id, value);
     if (value <= 1) {
       const newData = data.map((item) => {
         if (item.id === id) {
           item.cartQuantity = 1;
+          const fetchData = async () => {
+            const res = await fetch("http://127.0.0.1:3000/cart", {
+              method: "PUT",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                quantityValue: 1,
+                userId: item.userID2,
+                productId: item.productID2,
+              }),
+            });
+          };
+          fetchData().catch(console.error);
           return item;
         }
         return item;
@@ -49,27 +107,26 @@ function Cart(props) {
       const newData = data.map((item) => {
         if (item.id === id) {
           item.cartQuantity = value;
+          const fetchData = async () => {
+            const res = await fetch("http://127.0.0.1:3000/cart", {
+              method: "PUT",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                quantityValue: value,
+                userId: item.userID2,
+                productId: item.productID2,
+              }),
+            });
+          };
+          fetchData().catch(console.error);
           return item;
         }
         return item;
       });
-      const fetchData = async () => {
-        const res = await fetch("http://127.0.0.1:3000/cart", {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            value: value,
-            userId: cookies.userId,
-            productId: id,
-          }),
-        });
-        const data = await res.json();
-        // console.log(data);
-      };
-      fetchData().catch(console.error);
+
       setData(newData);
     }
     const newSum = data.reduce(
@@ -78,18 +135,6 @@ function Cart(props) {
     );
     setSum(newSum);
   };
-  const handleThanhcong = () => {
-    if (handleThanhcong) {
-      Swal.fire({
-        position: "top-center",
-        icon: "success",
-        title: "Mua hàng thành công",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-  };
-
   return (
     <>
       <div className='modal-body'>
@@ -109,6 +154,7 @@ function Cart(props) {
                   src={item.image}
                   width='100'
                   height='100'
+                  alt=''
                 />
                 <span className='cart-item-title'>{item.name}</span>
               </div>
@@ -139,7 +185,7 @@ function Cart(props) {
             <span className='cart-total-price'>
               {new Intl.NumberFormat("de-DE").format(sum)} VNĐ
             </span>
-            <button onClick={handleThanhcong} className='thanhtoan'>
+            <button onClick={handlePurchaseConfirm} className='thanhtoan'>
               Thanh Toán
             </button>
           </div>

@@ -35,6 +35,7 @@ function App() {
     };
     fetchData().catch(console.error);
   }, [cartStatus]);
+ 
   const handleAddingCart = (e) => {
     if (Object.keys(cookies).length === 0) {
       window.location.href = "http://localhost:8000/login";
@@ -101,7 +102,12 @@ function App() {
           ></Route>
           <Route
             path='/cart'
-            element={<CartWrapper allData={allData} cartData={cartData} />}
+            element={
+              <CartWrapper
+                allData={allData}
+                cartData={cartData}
+              />
+            }
           />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
           <Route
