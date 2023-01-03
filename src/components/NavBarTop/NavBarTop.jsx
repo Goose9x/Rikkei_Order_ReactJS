@@ -117,9 +117,7 @@ function NavBarTop(props) {
                 {username}
                 <ul className='dropdown-menu'>
                   <li>
-                    <a className='dropdown-item' href='/'>
-                      Tài khoản
-                    </a>
+                    <Link to="/user_profile">Tài khoản của tôi</Link>
                   </li>
                   <li>
                     <Link className='dropdown-item' to='/cart'>
