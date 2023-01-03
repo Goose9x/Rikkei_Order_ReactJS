@@ -165,9 +165,9 @@
   margin-top: 30px;
   height: 150px;
   width: 150px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 
-  /* margin-left: 25%; */
+  margin-left: 25%;
 }
 
 .sale-item-info .sale-box-img .sale-card-img {

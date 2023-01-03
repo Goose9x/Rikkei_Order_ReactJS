@@ -13,6 +13,7 @@ import ItemDetail from "./pages/ComponentsMainPage/ItemDetail";
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import UserProfileContainer from "./pages/UserProfileContainer";
+import PurchaseHistoryContainer from "./pages/PurchaseHistoryContainer";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
@@ -113,6 +114,7 @@ function App() {
           />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
           <Route path="/user_profile" element={<UserProfileContainer />}></Route>
+          <Route path="/purchase_history" element={<PurchaseHistoryContainer />}></Route>
 
           <Route
             path='/item/:id'

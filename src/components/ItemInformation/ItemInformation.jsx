@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./ItemInformation.css";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 function ItemInformation(props) {
   const { data } = props;
   const [valueItem, setValueItem] = useState(0);
@@ -24,24 +25,29 @@ function ItemInformation(props) {
   };
 
   const handleClickComment = (e) => {
-    console.log(commentValue, cookies.userId, e.target.id, data.id);
-    const fetchDataComment = async () => {
-      const res = await fetch("http://localhost:3000/review", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: Math.floor(Math.random() * 999999),
-          userID: cookies.userId,
-          productID: e.target.id,
-          comment: commentValue,
-        }),
-      });
-    };
-    fetchDataComment().catch(console.error);
+    if (Object.keys(cookies).length === 0) {
+      window.location.href = "http://localhost:8000/login";
+    } else {
+      console.log(commentValue, cookies.userId, e.target.id, data.id);
+      const fetchDataComment = async () => {
+        const res = await fetch("http://localhost:3000/review", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: Math.floor(Math.random() * 999999),
+            userID: cookies.userId,
+            productID: e.target.id,
+            comment: commentValue,
+          }),
+        });
+      };
+      fetchDataComment().catch(console.error);
+    }
   };
+
   // useEffect(() => {
   //   if (Cookies.get("name")) {
   //     setUserName(Cookies.get("name"));
@@ -49,8 +55,6 @@ function ItemInformation(props) {
   //   }
   // }, []);
 
-
-  
   useEffect(() => {
     const fetchDataReview = async () => {
       let id = window.location.href.replace("http://localhost:8000/item/", "");
@@ -65,10 +69,6 @@ function ItemInformation(props) {
     };
     fetchDataReview().catch(console.error);
   }, []);
-
-
-
-
 
   return (
     <>
@@ -209,25 +209,33 @@ function ItemInformation(props) {
             </div>
 
             <div className='item-comment'>
-              <div className='textarea-item'>
-                <textarea
-                  className='textarea-item-comment'
-                  value={commentValue}
-                  onChange={handleChangeComment}
-                ></textarea>
-              </div>
-              <button
-                id={data.id}
-                onClick={handleClickComment}
-                className='btn-submit-comment'
-              >
-                Submit
-              </button>
+              {Object.keys(cookies).length === 0 ? (
+                <div>
+                  <h5>Bạn hãy <Link to="/login">đăng nhập</Link> để bình luận</h5>
+                </div>
+              ) : (
+                <>
+                  <div className='textarea-item'>
+                    <textarea
+                      className='textarea-item-comment'
+                      value={commentValue}
+                      onChange={handleChangeComment}
+                    ></textarea>
+                  </div>
+                  <button
+                    id={data.id}
+                    onClick={handleClickComment}
+                    className='btn-submit-comment'
+                  >
+                    Submit
+                  </button>
+                </>
+              )}
 
               {dataReview ? (
                 <>
                   {dataReview.map((e, i) => (
-                    <div className='text-comment'>
+                    <div key={i} className='text-comment'>
                       <div className='user_display-image'>
                         <img src={e.avatar} alt='' />
                       </div>
