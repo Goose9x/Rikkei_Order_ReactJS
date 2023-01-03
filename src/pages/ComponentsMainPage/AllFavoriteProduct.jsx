@@ -10,18 +10,20 @@ function AllFavoriteProduct() {
       const res = await fetch("http://localhost:3000/favorite");
       const data = await res.json();
       setData(data.data);
-      console.log(data);
+      // console.log(data);
     };
     fetchDataFavorite().catch(console.error);
   }, [status]);
   const handleClickDeleteHeart = (e) => {
     let productId = e.target.id;
+    console.log(cookies.userId);
+
     setData(
       data.filter((e) => {
         return e.productID3 !== productId;
       })
     );
-    console.log(cookies.userId);
+    // console.log(cookies.userId);
     console.log(e.target.id);
     const DeleteHeart = async () => {
       const res = await fetch("http://localhost:3000/favorite/heart", {

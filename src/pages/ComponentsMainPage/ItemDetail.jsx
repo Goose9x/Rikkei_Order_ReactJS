@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ItemInformation from "../../components/ItemInformation/ItemInformation";
 function ItemDetail(props) {
-  let { itemSearchData } = props;
+  let { itemSearchData,handleClickComment } = props;
   // let [itemData, setItemData] = useState();
   // useEffect(() => {
   //   let id = window.location.href.replace("http://localhost:8000/item/", "");
@@ -17,7 +17,7 @@ function ItemDetail(props) {
   }
   return (
     <>
-      <ItemInformation data={itemSearchData[0]} />
+      <ItemInformation data={itemSearchData[0]} handleClickComment={handleClickComment} />
     </>
   );
 }
