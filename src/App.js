@@ -14,7 +14,22 @@ import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import UserProfileContainer from "./pages/UserProfileContainer";
 import PurchaseHistoryContainer from "./pages/PurchaseHistoryContainer";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBeql5cxaWyOUUGZXub5oP0mPNMftKYiXs",
+  authDomain: "ra-order.firebaseapp.com",
+  projectId: "ra-order",
+  storageBucket: "ra-order.appspot.com",
+  messagingSenderId: "1052623262223",
+  appId: "1:1052623262223:web:0fc02f8a0eda452debc97a",
+  measurementId: "G-CZFVWVQP46",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
   const [allData, setAllData] = useState("");
@@ -22,7 +37,7 @@ function App() {
   const [itemSearchData, setItemSearchData] = useState("");
   const [cartStatus, setCartStatus] = useState(true);
   const [pickSearchStatus, setPickSearchStatus] = useState(true);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`http://127.0.0.1:3000/product?category=`);
@@ -39,7 +54,7 @@ function App() {
     };
     fetchData().catch(console.error);
   }, [cartStatus]);
- 
+
   const handleAddingCart = (e) => {
     if (Object.keys(cookies).length === 0) {
       window.location.href = "http://localhost:8000/login";
@@ -84,10 +99,6 @@ function App() {
   if (!allData || !cartData) {
     return <div>loading...</div>;
   }
-  
-
-
-
 
   return (
     <>
@@ -111,26 +122,26 @@ function App() {
           ></Route>
           <Route
             path='/cart'
-            element={
-              <CartWrapper
-                allData={allData}
-                cartData={cartData}
-              />
-            }
+            element={<CartWrapper allData={allData} cartData={cartData} />}
           />
           <Route path='/favorite' element={<AllFavoriteProduct />}></Route>
-          <Route path="/user_profile" element={<UserProfileContainer />}></Route>
-          <Route path="/purchase_history" element={<PurchaseHistoryContainer />}></Route>
+          <Route
+            path='/user_profile'
+            element={<UserProfileContainer />}
+          ></Route>
+          <Route
+            path='/purchase_history'
+            element={<PurchaseHistoryContainer />}
+          ></Route>
 
           <Route
             path='/item/:id'
             element={<ItemDetail itemSearchData={itemSearchData} />}
           ></Route>
-         
         </Route>
       </Routes>
     </>
   );
 }
-
+export { storage };
 export default App;
