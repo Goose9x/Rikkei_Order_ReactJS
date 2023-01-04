@@ -32,13 +32,13 @@ function LoginContainer() {
             timer: 1500,
           });
           console.log(data);
-          setCookie("userId", data.cookie.userId, { maxAge: 1800 });
-          setCookie("role", data.cookie.role, { maxAge: 1800 });
-          setCookie("name", data.cookie.name, { maxAge: 1800 });
-          setCookie("avatar", data.cookie.avatar, { maxAge: 1800 });
+          setCookie("userId", data.cookie.userId, { maxAge: 3600 });
+          setCookie("role", data.cookie.role, { maxAge: 3600 });
+          setCookie("name", data.cookie.name, { maxAge: 3600 });
+          setCookie("avatar", data.cookie.avatar, { maxAge: 3600 });
           setTimeout(() => {
             window.location.href = "/";
-          }, 1500);
+          }, 2000);
         } else {
           toast(data.message);
         }

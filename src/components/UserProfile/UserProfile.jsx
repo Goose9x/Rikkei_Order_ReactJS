@@ -17,6 +17,7 @@ function UserProfile() {
   const [url, setUrl] = useState("");
   const [ValueUpload, setValueUpload] = useState("");
   useEffect(() => {
+    console.log(cookies.userId);
     const fetchDataUser = async () => {
       const res = await fetch(
         `http://127.0.0.1:3000/auth/user/profile/${cookies.userId}`
@@ -155,7 +156,9 @@ function UserProfile() {
               </div>
             </div>
             <div className='my-account'>
-              <p className='text-my-account'>Tài khoản của tôi</p>
+              <p className='user-account-title text-my-account'>
+                Tài khoản của tôi
+              </p>
             </div>
 
             <div className='purchase-history'>
@@ -252,7 +255,6 @@ function UserProfile() {
                   ></Form.Item>
                 </Form>
               </div>
-
               <div className='box-my-profile-right'>
                 <div className='user-avatar-img'>
                   {dataUserProfile ? (
@@ -275,7 +277,6 @@ function UserProfile() {
                 </div>
               </div>
             </div>
-
             <button
               id={cookies.userId}
               onClick={handleClickUpdateUserProfile}

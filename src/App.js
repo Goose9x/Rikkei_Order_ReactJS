@@ -97,7 +97,7 @@ function App() {
     fetchDataSearch().catch(console.error);
   };
   if (!allData || !cartData) {
-    return <div>loading...</div>;
+    return <div>alldata...</div>;
   }
 
   return (

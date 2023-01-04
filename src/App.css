@@ -54,6 +54,17 @@ body {
     margin-left: 10px
 }
 
+.user-profile-container .history-title {
+    color: red;
+}
+
+.purchased-history-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 80%;
+}
+
 @media all and (max-width: 800px) {
     .row {
         flex-wrap: wrap;
