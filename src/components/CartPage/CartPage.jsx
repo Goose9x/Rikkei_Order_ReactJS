@@ -41,7 +41,7 @@ function Cart(props) {
             userId: data[i].userID2,
             productId: data[i].productID2,
             sellPrice: data[i].sellPrice,
-            quantity: data[i].cartQuantity,
+            buy_quantity: data[i].cartQuantity,
           }),
         });
       };
