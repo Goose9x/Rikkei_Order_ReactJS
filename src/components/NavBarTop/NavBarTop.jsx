@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
 import "./NavBarTop.css";
-
+import logo from "./../../assets/logo.png";
 function NavBarTop(props) {
   let { handleSetDefaultCate, cartData, handleChooseSearchItem } = props;
   const [username, setUsername] = useState("");
@@ -54,7 +54,9 @@ function NavBarTop(props) {
   return (
     <>
       <div className='navbar-top'>
-        <div className='nav-logo'>RIKKEI MART</div>
+        <div className='nav-logo'>
+          <img src={logo} alt='' />
+        </div>
         <div className='nav-menu'>
           <Link to='/'>Home</Link>
           <Link to='/all_item' onClick={handleSetDefaultCate}>
@@ -117,7 +119,9 @@ function NavBarTop(props) {
                 {username}
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className="dropdown-item" to="/user_profile">Tài khoản của tôi</Link>
+                    <Link className='dropdown-item' to='/user_profile'>
+                      Tài khoản của tôi
+                    </Link>
                   </li>
                   <li>
                     <Link className='dropdown-item' to='/cart'>
